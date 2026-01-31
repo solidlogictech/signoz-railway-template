@@ -1,4 +1,4 @@
-FROM signoz/signoz-otel-collector:latest
+FROM signoz/signoz-otel-collector:v0.129.13
 
 # Default ClickHouse connection settings (override via Railway environment variables)
 ENV CLICKHOUSE_HOST=clickhouse.railway.internal

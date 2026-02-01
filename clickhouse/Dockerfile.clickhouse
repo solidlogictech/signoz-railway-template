@@ -1,10 +1,10 @@
 FROM clickhouse/clickhouse-server:25.5.6
 
-COPY configs/config.xml /etc/clickhouse-server/config.xml
-COPY configs/users.xml /etc/clickhouse-server/users.xml
-COPY configs/custom-function.xml /etc/clickhouse-server/custom-function.xml
-COPY configs/user_scripts /var/lib/clickhouse/user_scripts/
-COPY configs/cluster.xml /etc/clickhouse-server/config.d/cluster.xml
+COPY clickhouse/configs/config.xml /etc/clickhouse-server/config.xml
+COPY clickhouse/configs/users.xml /etc/clickhouse-server/users.xml
+COPY clickhouse/configs/custom-function.xml /etc/clickhouse-server/custom-function.xml
+COPY clickhouse/configs/user_scripts /var/lib/clickhouse/user_scripts/
+COPY clickhouse/configs/cluster.xml /etc/clickhouse-server/config.d/cluster.xml
 
 RUN mkdir -p /var/lib/clickhouse/user_scripts/ \
     && chown clickhouse:clickhouse /var/lib/clickhouse/user_scripts

@@ -11,7 +11,7 @@
         <cluster>
             <shard>
                 <replica>
-                    <host>clickhouse</host>
+                    <host>clickhouse.railway.internal</host>
                     <port>9000</port>
                 </replica>
             </shard>

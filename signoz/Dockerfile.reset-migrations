@@ -1,6 +1,0 @@
-FROM clickhouse/clickhouse-server:25.5.6
-
-COPY signoz/reset-migrations.sh /reset-migrations.sh
-RUN chmod +x /reset-migrations.sh
-
-CMD ["/reset-migrations.sh"]

@@ -1,5 +1,6 @@
 FROM clickhouse/clickhouse-server:25.5.6
 
+# Cache bust: 2025-01-31-v2
 COPY clickhouse/configs/config.xml /etc/clickhouse-server/config.xml
 COPY clickhouse/configs/users.xml /etc/clickhouse-server/users.xml
 COPY clickhouse/configs/custom-function.xml /etc/clickhouse-server/custom-function.xml

@@ -1,15 +1,13 @@
 FROM signoz/signoz-otel-collector:v0.129.13
 
-# Default ClickHouse connection settings (override via Railway environment variables)
 ENV CLICKHOUSE_HOST=clickhouse.railway.internal
 ENV CLICKHOUSE_PORT=9000
 ENV CLICKHOUSE_USER=default
 ENV CLICKHOUSE_PASSWORD=signoz123
 ENV LOW_CARDINAL_EXCEPTION_GROUPING=false
+ENV OTEL_RESOURCE_ATTRIBUTES=host.name=signoz-host,os.type=linux
 
 COPY signoz/otel-collector-config.yaml /etc/otel-collector-config.yaml
 COPY signoz/signoz/otel-collector-opamp-config.yaml /etc/manager-config.yaml
 
-# Base image ENTRYPOINT is ["/signoz-otel-collector"] — we must pass our config path.
-# --copy-path must be writable (base image runs as non-root UID 10001).
-CMD ["--config", "/etc/otel-collector-config.yaml", "--manager-config", "/etc/manager-config.yaml", "--copy-path", "/tmp/signozcol-config.yaml"]
+CMD ["--config", "/etc/otel-collector-config.yaml", "--manager-config", "/etc/manager-config.yaml", "--copy-path", "/tmp/signozcol-config.yaml", "--feature-gates=-pkg.translator.prometheus.NormalizeName"]

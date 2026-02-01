@@ -1,0 +1,8 @@
+FROM signoz/signoz-schema-migrator:v0.110.0
+
+ENV CLICKHOUSE_HOST=clickhouse.railway.internal
+ENV CLICKHOUSE_PORT=9000
+ENV CLICKHOUSE_USER=default
+ENV CLICKHOUSE_PASSWORD=signoz123
+
+CMD ["async"]

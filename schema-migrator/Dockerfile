@@ -1,5 +1,3 @@
 FROM signoz/signoz-schema-migrator:v0.111.42
 
-# --cluster-name "" disables ON CLUSTER DDL (requires ZooKeeper)
-# Single-node ClickHouse does not need cluster coordination
-CMD ["sync", "--dsn", "tcp://default:signoz123@clickhouse.railway.internal:9000", "--cluster-name", ""]
+CMD ["sync", "--dsn", "tcp://default:signoz123@clickhouse.railway.internal:9000"]

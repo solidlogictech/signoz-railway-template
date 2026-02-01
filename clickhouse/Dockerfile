@@ -1,0 +1,23 @@
+FROM clickhouse/clickhouse-server:25.5.6
+
+# Cache bust: 2025-01-31-v2
+COPY clickhouse/configs/config.xml /etc/clickhouse-server/config.xml
+COPY clickhouse/configs/users.xml /etc/clickhouse-server/users.xml
+COPY clickhouse/configs/custom-function.xml /etc/clickhouse-server/custom-function.xml
+COPY clickhouse/configs/user_scripts /var/lib/clickhouse/user_scripts/
+COPY clickhouse/configs/cluster.xml /etc/clickhouse-server/config.d/cluster.xml
+
+RUN mkdir -p /var/lib/clickhouse/user_scripts/ \
+    && chown clickhouse:clickhouse /var/lib/clickhouse/user_scripts
+
+ARG VERSION=v0.0.1
+RUN set -eux; \
+    node_os=$(uname -s | tr '[:upper:]' '[:lower:]'); \
+    node_arch=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/'); \
+    echo "Fetching histogram-quantile for ${node_os}/${node_arch}"; \
+    cd /tmp; \
+    wget -O histogram-quantile.tar.gz \
+      "https://github.com/SigNoz/signoz/releases/download/histogram-quantile%2F${VERSION}/histogram-quantile_${node_os}_${node_arch}.tar.gz"; \
+    tar -xvzf histogram-quantile.tar.gz; \
+    mv histogram-quantile /var/lib/clickhouse/user_scripts/histogramQuantile; \
+    rm histogram-quantile.tar.gz

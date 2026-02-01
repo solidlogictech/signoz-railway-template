@@ -7,5 +7,5 @@ ENV CLICKHOUSE_USER=default
 ENV CLICKHOUSE_PASSWORD=signoz123
 ENV LOW_CARDINAL_EXCEPTION_GROUPING=false
 
-COPY ./otel-collector-config.yaml /etc/otel-collector-config.yaml
-COPY signoz/otel-collector-opamp-config.yaml /etc/manager-config.yaml
+COPY signoz/otel-collector-config.yaml /etc/otel-collector-config.yaml
+COPY signoz/signoz/otel-collector-opamp-config.yaml /etc/manager-config.yaml

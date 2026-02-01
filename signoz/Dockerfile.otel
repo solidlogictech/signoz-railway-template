@@ -9,3 +9,6 @@ ENV LOW_CARDINAL_EXCEPTION_GROUPING=false
 
 COPY signoz/otel-collector-config.yaml /etc/otel-collector-config.yaml
 COPY signoz/signoz/otel-collector-opamp-config.yaml /etc/manager-config.yaml
+
+# Base image ENTRYPOINT is ["/signoz-otel-collector"] — we must pass our config path
+CMD ["--config", "/etc/otel-collector-config.yaml", "--manager-config", "/etc/manager-config.yaml"]

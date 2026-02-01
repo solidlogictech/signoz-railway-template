@@ -1,0 +1,6 @@
+FROM clickhouse/clickhouse-server:25.5.6
+
+COPY signoz/fix-logs-schema.sh /fix-logs-schema.sh
+RUN chmod +x /fix-logs-schema.sh
+
+CMD ["/fix-logs-schema.sh"]

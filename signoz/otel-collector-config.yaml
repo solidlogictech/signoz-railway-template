@@ -57,13 +57,13 @@ extensions:
     endpoint: 0.0.0.0:1777
 exporters:
   clickhousetraces:
-    datasource: tcp://${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_traces
+    datasource: tcp://${env:CLICKHOUSE_USER}:${env:CLICKHOUSE_PASSWORD}@${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_traces
     low_cardinal_exception_grouping: ${env:LOW_CARDINAL_EXCEPTION_GROUPING}
     use_new_schema: true
   signozclickhousemetrics:
-    dsn: tcp://${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_metrics
+    dsn: tcp://${env:CLICKHOUSE_USER}:${env:CLICKHOUSE_PASSWORD}@${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_metrics
   clickhouselogsexporter:
-    dsn: tcp://${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_logs
+    dsn: tcp://${env:CLICKHOUSE_USER}:${env:CLICKHOUSE_PASSWORD}@${env:CLICKHOUSE_HOST}:${env:CLICKHOUSE_PORT}/signoz_logs
     timeout: 10s
     use_new_schema: true
 service:
